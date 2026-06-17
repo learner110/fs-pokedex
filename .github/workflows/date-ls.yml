@@ -1,0 +1,15 @@
+name: Date and directory contents
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  date_ls_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print date
+        run: date
+      - name: List directory contents
+        run: ls -l
