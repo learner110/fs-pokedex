@@ -9,7 +9,6 @@ app.get('/version', (req, res) => {
 })
 
 app.get('/health', (req, res) => {
-  throw new Error('test failure')
   res.send('ok')
 })
 
@@ -19,3 +18,6 @@ const start = async () => {
 }
 
 start()
+
+
+console.log("test")
