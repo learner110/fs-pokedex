@@ -32,7 +32,7 @@ jobs:
   deploy:
     needs: [build_and_test]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
+    if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
     steps:
       - name: Trigger Render deployment
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
@@ -40,7 +40,7 @@ jobs:
   tag_release:
     needs: [build_and_test]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
+    if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
     steps:
       - uses: actions/checkout@v6
         with:
@@ -54,7 +54,7 @@ jobs:
   notify_success:
     needs: [deploy, tag_release]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && success() }}
+    if: github.event_name == 'push' && success()
     steps:
       - name: Discord success notification
         uses: sarisia/actions-status-discord@v1
@@ -70,7 +70,7 @@ jobs:
   notify_failure:
     needs: [build_and_test]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && failure() }}
+    if: github.event_name == 'push' && failure()
     steps:
       - name: Discord failure notification
         uses: sarisia/actions-status-discord@v1
