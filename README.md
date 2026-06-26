@@ -14,4 +14,9 @@ Start by running `npm install` inside the project folder
 
 
 
-## Testing skip with correct format
+
+# Deployed app:
+https://fs-pokedex-301g.onrender.com
+
+# Exercise 21 repository:
+https://github.com/learner110/redux-anecdotes-cicd
